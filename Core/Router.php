@@ -3,6 +3,11 @@ namespace Core;
 
 class Router {
     private static $routes; 
+    protected $request; 
+    public function __construct()
+    {
+        $this->request = new Request(); 
+    }
 
     public static function connect($url, $route){
         self::$routes[$url] = $route; 

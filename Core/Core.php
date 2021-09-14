@@ -4,18 +4,25 @@ namespace Core;
 
 class Core
 {
+
+    protected $request;
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
+
     public function run()
     {
 
         /* STATIC ROUTER
         */
         require_once "src/routes.php";
-        $url = substr($_SERVER["REQUEST_URI"], 4); 
+        $url = substr($_SERVER["REQUEST_URI"], 4);
         $route = Router::get($url);
-        $controllerName = ucfirst($route["controller"]) . "Controller"; 
-        $methodName = $route["action"] . "Action"; 
-        $controller = new $controllerName(); 
-        $controller->$methodName(); 
+        $controllerName = ucfirst($route["controller"]) . "Controller";
+        $methodName = $route["action"] . "Action";
+        $controller = new $controllerName();
+        $controller->$methodName();
 
         /*DYNAMIC ROUTER
         $url = substr($_SERVER["REQUEST_URI"], 5);

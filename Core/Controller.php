@@ -3,9 +3,15 @@
 namespace Core;
 
 class Controller
-{
-    protected static $_render; 
-    
+{   
+    protected static $_render;
+    protected $request; 
+    public function __construct()
+    {
+        $this->request = new Request(); 
+    }
+
+
     protected function render($view, $scope = [])
     {
         extract($scope);
@@ -14,14 +20,13 @@ class Controller
             ob_start();
             include($f);
             $view = ob_get_clean();
-            // var_dump($view); 
-            ob_start(); 
-            var_dump("$");
-            include(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), "src", "View", "index"]).".php"); 
-            self::$_render = ob_get_clean(); 
+            ob_start();
+            include(implode(DIRECTORY_SEPARATOR, [dirname(__DIR__), "src", "View", "index"]) . ".php");
+            self::$_render = ob_get_clean();
         }
-
-        // function __destruct(){
-        // }
+    }
+    function __destruct()
+    {
+        echo self::$_render; 
     }
 }
