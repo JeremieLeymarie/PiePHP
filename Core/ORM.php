@@ -45,6 +45,11 @@ class ORM extends Database
                     $qry = $db->query($sql); 
                     $res[$tableName] = $qry->fetchAll(); 
                 }
+                else if($type == "has one"){
+                    $sql = "SELECT * FROM $tableName WHERE id = " . $res[$tableName . "_id"]; 
+                    $qry = $db->query($sql); 
+                    $res[$tableName] = $qry->fetch(); 
+                }
             }
         }
 

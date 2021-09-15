@@ -30,7 +30,7 @@ class UserController extends Core\Controller
             "article_id" => $article->id
         ]);
 
-        $table = $article->read($article->tableName, $article->id, $article->getRelations()); 
+        $table = $comment2->read($comment2->tableName, $comment2->id, $comment2->getRelations()); 
         echo "<pre>"; 
         var_dump($table); 
         echo "</pre>"; 
