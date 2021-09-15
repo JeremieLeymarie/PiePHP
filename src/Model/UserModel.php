@@ -1,10 +1,11 @@
 <?php
 
-class UserModel
+class UserModel extends Core\Entity
 {
     private $email;
     private $password;
-
+    public $tableName = "users"; 
+ 
     public function save()
     {
         try {
@@ -20,7 +21,6 @@ class UserModel
             ":email"=>$this->email, 
             ":pass"=>$this->password, 
         ));
-        var_dump($query); 
     }
 
     public function setEmail($value)

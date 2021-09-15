@@ -6,11 +6,11 @@ class Controller
 {   
     protected static $_render;
     protected $request; 
+
     public function __construct()
     {
         $this->request = new Request(); 
     }
-
 
     protected function render($view, $scope = [])
     {
