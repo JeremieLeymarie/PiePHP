@@ -14,11 +14,9 @@ class Entity extends ORM
         }
         else{
             $this->id = $this->create($this->tableName, $params);
-        }
-    
-
-        foreach ($params as $key => $value) {
-            $this->$key = $value;
+            foreach ($params as $key => $value) {
+                $this->$key = $value;
+            }
         }
     }
 

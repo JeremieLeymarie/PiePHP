@@ -27,17 +27,28 @@ class ORM extends Database
             }
         }
         $sql .= ")";
-        var_dump($sql, $table); 
         $db->exec($sql);
         return $db->lastInsertId();
     }
 
-    public function read($table, $id)
+    public function read($table, $id, $relations = NULL)
     {
         $db = $this->dbConnect(); 
         $sql = "SELECT * FROM $table WHERE id = $id";
         $qry = $db->query($sql);
-        return $qry->fetch();
+        $res = $qry->fetch(); 
+
+        if($relations != NULL){
+            foreach($relations as $type=>$tableName){
+                if($type == "has many"){
+                    $sql = "SELECT * FROM $tableName WHERE " . $table . "_id = $id";
+                    $qry = $db->query($sql); 
+                    $res[$tableName] = $qry->fetchAll(); 
+                }
+            }
+        }
+
+        return $res;
     }
 
     public function update($table, $id, $fields)
