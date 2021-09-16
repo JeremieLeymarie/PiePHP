@@ -17,12 +17,25 @@ class Core
         /* STATIC ROUTER
         */
         require_once "src/routes.php";
-        $url = substr($_SERVER["REQUEST_URI"], 4);
+        // $url = substr($_SERVER["REQUEST_URI"], 4);
+        preg_match("/(?<=pie\/)(.*)(?=\/.)/", $_SERVER["REQUEST_URI"], $matches);
+        $url = $matches[0]; 
         $route = Router::get($url);
-        $controllerName = ucfirst($route["controller"]) . "Controller";
-        $methodName = $route["action"] . "Action";
-        $controller = new $controllerName();
-        $controller->$methodName();
+        if($route){
+            $controllerName = ucfirst($route["controller"]) . "Controller";
+            $methodName = $route["action"] . "Action";
+            $controller = new $controllerName();
+            if(preg_match("/(?<=\/user\/)(.*)/", $_SERVER["REQUEST_URI"], $matches)){
+                $controller->$methodName($matches[0]); 
+            }
+            else{
+                $controller->$methodName();
+            }
+        }
+        else{
+            echo "404"; 
+        }
+       
 
         /*DYNAMIC ROUTER
         $url = substr($_SERVER["REQUEST_URI"], 5);

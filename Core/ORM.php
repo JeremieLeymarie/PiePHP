@@ -98,6 +98,7 @@ class ORM extends Database
             }
         }
         $qry = $db->query($sql);
-        return $qry->fetch();
+        $res = $qry->fetch();
+        return $res; 
     }
 }

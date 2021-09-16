@@ -35,4 +35,8 @@ class UserController extends Core\Controller
         var_dump($table); 
         echo "</pre>"; 
     }
+
+    public function showAction($id){
+        echo "Id user : $id" . PHP_EOL; 
+    }
 }

@@ -33,4 +33,6 @@ class UserModel extends Core\Entity
     {
         $this->password = $value;
     }
+
+    
 }

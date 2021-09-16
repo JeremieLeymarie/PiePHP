@@ -1,24 +1,32 @@
 <?php
-namespace Core; 
 
-class Router {
-    private static $routes; 
-    protected $request; 
+namespace Core;
+
+class Router
+{
+    private static $routes;
+    protected $request;
     public function __construct()
     {
-        $this->request = new Request(); 
+        $this->request = new Request();
     }
 
-    public static function connect($url, $route){
-        self::$routes[$url] = $route; 
-    }
-
-    public static function get($url){
-        if(array_key_exists($url, self::$routes)){
-            return self::$routes[$url]; 
+    public static function connect($url, $route)
+    {
+        $reg = preg_match("/(?<=\/)(.*)(?=\/)/", $url, $matches);
+        if ($reg) {
+            $url = $matches[0];
         }
-        else{
-            return false; 
+        self::$routes[$url] = $route;
+    }
+
+    public static function get($url)
+    {
+        if (array_key_exists($url, self::$routes)) {
+
+            return self::$routes[$url];
+        } else {
+            return false;
         }
     }
 }
