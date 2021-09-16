@@ -34,7 +34,7 @@ class ORM extends Database
     public function read($table, $id, $relations = NULL)
     {
         $db = $this->dbConnect(); 
-        $sql = "SELECT * FROM $table WHERE id = $id";
+        $sql = "SELECT * FROM $table WHERE id_" . $table . " =  " . $id;
         $qry = $db->query($sql);
         $res = $qry->fetch(); 
 
@@ -69,7 +69,7 @@ class ORM extends Database
             }
         }
 
-        $sql .= " WHERE id = $id";
+        $sql .= " WHERE id_" . $table . " = ". $id;
         $qry = $db->query($sql);
         return $qry === false ? $qry : true;
     }
@@ -77,13 +77,13 @@ class ORM extends Database
     public function delete($table, $id)
     {
         $db = $this->dbConnect(); 
-        $sql = "DELETE FROM $table WHERE id=$id";
+        $sql = "DELETE FROM $table WHERE id_" . $table . " = " . $id;
         $qry = $db->query($sql);
         return $qry === false ? $qry : true;
     }
 
     public function find($table, $params = array(
-        "WHERE" => "1",
+        "WHERE id =" => "1",
         "ORDER BY" => "id ASC",
         "LIMIT" => ""
     ))
@@ -91,14 +91,12 @@ class ORM extends Database
         $db = $this->dbConnect(); 
         $sql = "SELECT * FROM $table ";
         foreach ($params as $key => $value) {
-            if ($key == "WHERE") {
-                $sql .= "WHERE id =' $value '";
-            } else {
                 $sql .= $key . " '" . $value . "' ";
-            }
         }
+
         $qry = $db->query($sql);
         $res = $qry->fetch();
+
         return $res; 
     }
 }

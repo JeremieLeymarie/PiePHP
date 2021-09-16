@@ -6,7 +6,7 @@ class UserController extends Core\Controller
 
     public function addAction()
     {
-        $this->render("register", ["users" => ["a", "b", "c"]]);
+        $this->render("register");
     }
 
     public function registerAction()
@@ -15,28 +15,34 @@ class UserController extends Core\Controller
         $user = new UserModel($params);
         if ($user->id) {
             self::$_render = "Votre compte a été crée. " . PHP_EOL;
+            header('Location: http://localhost/pie/login');
         }
     }
 
-    public function testAction()
+    public function loginPageAction()
     {
-        $article = new ArticleModel(["content" => "blabla"]);
-        $comment = new CommentModel([
-            "content" => "comment1",
-            "article_id" => $article->id
-        ]);
-        $comment2 = new CommentModel([
-            "content" => "comment2",
-            "article_id" => $article->id
-        ]);
-
-        $table = $comment2->read($comment2->tableName, $comment2->id, $comment2->getRelations()); 
-        echo "<pre>"; 
-        var_dump($table); 
-        echo "</pre>"; 
+        $this->render("login");
     }
 
-    public function showAction($id){
-        echo "Id user : $id" . PHP_EOL; 
+    public function loginAction()
+    {
+        $params = $this->request->getQueryParams();
+        $orm = new Core\ORM();
+        $res = $orm->find("fiche_personne", [
+            "WHERE password = " => $params['password'],
+            "AND email = " => $params["email"]
+        ]);
+
+        if ($res) {
+            header('Location: http://localhost/pie/profile/' . $res["id_fiche_personne"]);
+        } else {
+            $this->render("login", ["success" => false]);
+        }
+    }
+
+    public function profileAction($id)
+    {
+        $user = new UserModel(["id" => $id]); 
+        $this->render("profile", ["data" => $user]); 
     }
 }

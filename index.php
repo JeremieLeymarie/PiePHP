@@ -7,9 +7,3 @@ require_once(implode(DIRECTORY_SEPARATOR, ["Core", "autoload.php"]));
 $app = new Core\Core();
 $app->run();
 
-// require("src/View/index.php"); 
-
-echo "<pre>";
-var_dump($_POST, $_GET, $_SERVER);
-echo "</pre>";
-

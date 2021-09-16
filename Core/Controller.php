@@ -38,7 +38,7 @@ class Controller
     {
         $patterns = [];
         $replacements = [];
-        array_push($patterns, "/({{)(.*)(}})/");
+        array_push($patterns, "/({{)(.*?)(}})/");
         array_push($replacements, "<?= htmlentities($2)?>");
         array_push($patterns, "/(@if\()(.*)/");
         array_push($replacements, "<?php if($2:?>");

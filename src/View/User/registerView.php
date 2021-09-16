@@ -1,31 +1,25 @@
-<p>Register</p>
 
-<form action="save" method="POST">
-<label for="register-email">Email</label>
-    <input type="text" name="email" id="register-email">
-    <label for="register-password">Password</label>
-    <input type="password" name="password" id="register-password">
-    <input type="submit" value="Register now">
+<form action="save" method="POST" class="user-form">
+    <div>
+        <h2>Sign up</h2>
+    </div>
+    <label for="nom">Last Name</label>
+    <input type="text" name="nom">
+    <br>
+    <label for="prenom">First name</label>
+    <input type="text" name="prenom">
+    <br>
+    <label for="email">Email address</label>
+    <input type="text" name="email">
+    <br>
+    <label for="date_naissance">Birth Date</label>
+    <input type="date" name="date_naissance">
+    <br>
+    <label for="adresse">Adress</label>
+    <input type="text" name="adresse">
+    <br>
+    <label for="password">password</label>
+    <input type="password" name="password">
+    <br>
+    <input type="submit" value="&rarr;">
 </form>
-
-<!-- <?php if(count($records) === 1):?>
-    I have one record!
-<?php elseif(count($records)>1):?>
-    I have multiple records! 
-<?php else:?>
-    I don't have any records
-<?php endif;?> -->
-
-<!-- <?php foreach($users as $user):?>
-    <p>This is user <?= htmlentities($user)?></p>
-<?php endforeach;?> -->
-
-<!-- <?php if(isset($users) ):?>
-     $users is defined and is not null 
-<?php endif;?> -->
-
-<?php if(empty($users)):?>
-    <!-- $users is not empty -->
-<?php endif;?>
-
-

@@ -1,8 +1,8 @@
-@isset($success)
-    @if($success === false)
+<?php if(isset($success)):?>
+    <?php if($success === false):?>
         <p>Connection failed</p>
-    @endif
-@endisset
+    <?php endif;?>
+<?php endif;?>
 
 <form action="login" method="POST">
     <label for="email">Email</label>
