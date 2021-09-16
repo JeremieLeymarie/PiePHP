@@ -8,10 +8,24 @@
     <input type="submit" value="Register now">
 </form>
 
-<?php if(count($records) === 1):?>
+<!-- <?php if(count($records) === 1):?>
     I have one record!
 <?php elseif(count($records)>1):?>
     I have multiple records! 
 <?php else:?>
     I don't have any records
+<?php endif;?> -->
+
+<!-- <?php foreach($users as $user):?>
+    <p>This is user <?= htmlentities($user)?></p>
+<?php endforeach;?> -->
+
+<!-- <?php if(isset($users) ):?>
+     $users is defined and is not null 
+<?php endif;?> -->
+
+<?php if(empty($users)):?>
+    <!-- $users is not empty -->
 <?php endif;?>
+
+

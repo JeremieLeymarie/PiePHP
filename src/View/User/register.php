@@ -8,10 +8,24 @@
     <input type="submit" value="Register now">
 </form>
 
-@if(count($records) === 1)
+<!-- @if(count($records) === 1)
     I have one record!
 @elseif(count($records)>1)
     I have multiple records! 
 @else
     I don't have any records
-@endif
+@endif -->
+
+<!-- @foreach($users as $user)
+    <p>This is user {{$user}}</p>
+@endforeach -->
+
+<!-- @isset($users) 
+     $users is defined and is not null 
+@endisset -->
+
+<!-- @empty($users)
+    $users is not empty
+@endempty -->
+
+

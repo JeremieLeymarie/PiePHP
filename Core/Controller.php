@@ -48,6 +48,18 @@ class Controller
         array_push($replacements, "<?php elseif($2:?>");
         array_push($patterns, "/@else/");
         array_push($replacements, "<?php else:?>");
+        array_push($patterns, "/(@foreach\()(.*)/");
+        array_push($replacements, "<?php foreach($2:?>");
+        array_push($patterns, "/@endforeach/");
+        array_push($replacements, "<?php endforeach;?>");
+        array_push($patterns, "/(@isset\()(.*)/");
+        array_push($replacements, "<?php if(isset($2):?>");
+        array_push($patterns, "/@endisset/");
+        array_push($replacements, "<?php endif;?>");
+        array_push($patterns, "/(@empty\()(.*)/");
+        array_push($replacements, "<?php if(empty($2):?>");
+        array_push($patterns, "/@endempty/");
+        array_push($replacements, "<?php endif;?>");
 
         return preg_replace($patterns, $replacements, $txt);
     }

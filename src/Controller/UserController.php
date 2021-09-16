@@ -6,7 +6,7 @@ class UserController extends Core\Controller
 
     public function addAction()
     {
-        $this->render("register", ["records" => []]);
+        $this->render("register", ["users" => ["a", "b", "c"]]);
     }
 
     public function registerAction()
