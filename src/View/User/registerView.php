@@ -8,4 +8,4 @@
     <input type="submit" value="Register now">
 </form>
 
-<?= htmlentities(Hello)?>
+<?= htmlentities($name)?>
