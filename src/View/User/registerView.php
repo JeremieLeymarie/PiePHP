@@ -8,4 +8,10 @@
     <input type="submit" value="Register now">
 </form>
 
-<?= htmlentities($name)?>
+<?php if(count($records) === 1):?>
+    I have one record!
+<?php elseif(count($records)>1):?>
+    I have multiple records! 
+<?php else:?>
+    I don't have any records
+<?php endif;?>
