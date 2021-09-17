@@ -9,3 +9,4 @@ Core\Router::connect("/profile/{id}", ["controller" => "user", "action" => "prof
 Core\Router::connect("/modify/{id}", ["controller" => "user", "action" => "modify"]); 
 Core\Router::connect("/modifyPage/{id}", ["controller" => "user", "action" => "modifyPage"]); 
 Core\Router::connect("/delete/{id}", ["controller" => "user", "action" => "delete"]); 
+Core\Router::connect("/film/{id}", ["controller" => "film", "action" => "film"]); 

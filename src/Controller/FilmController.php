@@ -20,4 +20,10 @@ class FilmController extends Core\Controller
 
         $this->render("index", ["films" => $films]);
     }
+
+    public function filmAction($id){
+        $film = new FilmModel(["id" => $id]);
+        $res = $film->read($film->tableName, $id, $film->getRelations()); 
+        $this->render("film", ["film" => $res]);
+    }
 }
