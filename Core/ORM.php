@@ -63,7 +63,7 @@ class ORM extends Database
         $sql = "UPDATE $table SET ";
         $i = 0;
         foreach ($fields as $key => $value) {
-            $sql .= $key . " = '" . $value . "'";
+            $sql .= $key . ' = "' . $value . '"';
             $i++;
             if ($i != count($fields)) {
                 $sql .= ", ";

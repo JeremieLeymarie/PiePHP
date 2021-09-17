@@ -9,7 +9,7 @@
         <?php endif;?>
         <?php if(isset($film["annee_prod"])):?>
         <p>Produit en
-            <?= htmlentities($film["annee_prod"])?>
+            <?= htmlentities($film["annee_prod"])?>.
         </p>
         <?php endif;?>
         <?php if(isset($film["duree_min"])):?>

@@ -10,3 +10,8 @@ Core\Router::connect("/modify/{id}", ["controller" => "user", "action" => "modif
 Core\Router::connect("/modifyPage/{id}", ["controller" => "user", "action" => "modifyPage"]); 
 Core\Router::connect("/delete/{id}", ["controller" => "user", "action" => "delete"]); 
 Core\Router::connect("/film/{id}", ["controller" => "film", "action" => "film"]); 
+Core\Router::connect("/admin", ["controller" => "film", "action" => "admin"]); 
+Core\Router::connect("/searchFilm", ["controller" => "film", "action" => "searchFilm"]); 
+Core\Router::connect("/addFilm", ["controller" => "film", "action" => "addFilm"]); 
+Core\Router::connect("/modifyFilm/{id}", ["controller" => "film", "action" => "modifyFilm"]); 
+Core\Router::connect("/deleteFilm/{id}", ["controller" => "film", "action" => "deleteFilm"]); 

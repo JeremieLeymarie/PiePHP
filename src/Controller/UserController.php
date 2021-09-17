@@ -75,4 +75,6 @@ class UserController extends Core\Controller
         $user = new UserModel(["id" => $id]);
         $this->render("modify", ["data" => $user]);
     }
+
+   
 }
