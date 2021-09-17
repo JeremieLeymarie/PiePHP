@@ -9,7 +9,5 @@
             <li>Email : {{ $data->email }}</li>
         </ul>
     </section>
-    <section>
-        
-    </section>
+    <a href="http://localhost/pie/modifyPage/{{$data->id}}">Modifiez vos informations</a>
 </div>

@@ -42,7 +42,37 @@ class UserController extends Core\Controller
 
     public function profileAction($id)
     {
-        $user = new UserModel(["id" => $id]); 
-        $this->render("profile", ["data" => $user]); 
+        $user = new UserModel(["id" => $id]);
+        $this->render("profile", ["data" => $user]);
+    }
+
+    public function deleteAction($id)
+    {
+        $user = new UserModel(["id" => $id]);
+        $res = $user->delete($user->tableName, $id);
+        if ($res) {
+            self::$_render = "Votre compte a bien été supprimé";
+        } else {
+            self::$_render = "Erreur lors de la suppression du compte";
+        }
+    }
+
+    public function modifyAction($id)
+    {
+        $params = $this->request->getQueryParams();
+        $user = new UserModel(["id" => $id]);
+        $res = $user->update($user->tableName, $id, $params);
+        if ($res) {
+            self::$_render = "Informations mises à jour";
+            header("Location: http://localhost/pie/profile/" . $user->id); 
+        } else {
+            self::$_render = "Echec de la modification";
+        }
+    }
+
+    public function modifyPageAction($id)
+    {
+        $user = new UserModel(["id" => $id]);
+        $this->render("modify", ["data" => $user]);
     }
 }

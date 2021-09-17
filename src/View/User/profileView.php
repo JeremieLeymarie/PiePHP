@@ -9,4 +9,5 @@
             <li>Email : <?= htmlentities( $data->email )?></li>
         </ul>
     </section>
+    <a href="http://localhost/pie/modifyPage/<?= htmlentities($data->id)?>">Modifiez vos informations</a>
 </div>
