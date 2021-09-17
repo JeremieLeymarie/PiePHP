@@ -1,11 +1,12 @@
 <?php
 
-class AppController extends Core\Controller
+class FilmController extends Core\Controller
 {
+
     public function indexAction()
     {
+        $i = 0;
         $films = [];
-        $i = 1;
         while (true) {
             $film = new FilmModel(["id" => $i]);
             $res = $film->read($film->tableName, $i, $film->getRelations());

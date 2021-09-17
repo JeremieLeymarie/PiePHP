@@ -10,9 +10,11 @@ class Entity extends ORM
     {
         if (count($params) == 1 && key_exists("id", $params)) {
             $params = $this->read($this->tableName, $params["id"]);
-            $this->id = $params["id_" . $this->tableName]; 
-        }
-        else{
+            if (!isset($params["id_" . $this->tableName])) {
+                return;
+            }
+            $this->id = $params["id_" . $this->tableName];
+        } else {
             $this->id = $this->create($this->tableName, $params);
         }
         foreach ($params as $key => $value) {

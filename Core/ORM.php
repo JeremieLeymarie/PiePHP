@@ -7,7 +7,7 @@ class ORM extends Database
 
     public function create($table, $fields)
     {
-        $db = $this->dbConnect(); 
+        $db = $this->dbConnect();
         $sql = "INSERT INTO $table (";
         $i = 0;
         foreach ($fields as $key => $value) {
@@ -33,22 +33,23 @@ class ORM extends Database
 
     public function read($table, $id, $relations = NULL)
     {
-        $db = $this->dbConnect(); 
+        $db = $this->dbConnect();
         $sql = "SELECT * FROM $table WHERE id_" . $table . " =  " . $id;
         $qry = $db->query($sql);
-        $res = $qry->fetch(); 
+        $res = $qry->fetch();
 
-        if($relations != NULL){
-            foreach($relations as $type=>$tableName){
-                if($type == "has many"){
-                    $sql = "SELECT * FROM $tableName WHERE " . $table . "_id = $id";
-                    $qry = $db->query($sql); 
-                    $res[$tableName] = $qry->fetchAll(); 
-                }
-                else if($type == "has one"){
-                    $sql = "SELECT * FROM $tableName WHERE id = " . $res[$tableName . "_id"]; 
-                    $qry = $db->query($sql); 
-                    $res[$tableName] = $qry->fetch(); 
+        if ($relations != NULL) {
+            foreach ($relations as $type => $tableName) {
+                if ($type == "has many") {
+                    $sql = "SELECT * FROM $tableName WHERE id_" . $table . " = $id";
+                    $qry = $db->query($sql);
+                    $res[$tableName] = $qry->fetchAll();
+                } else if ($type == "has one") {
+                    if (isset($res["id_" . $tableName]) && $res["id_" . $tableName] != NULL) {
+                        $sql = "SELECT * FROM $tableName WHERE id_" . $tableName . " = " . $res["id_" . $tableName];
+                        $qry = $db->query($sql);
+                        $res[$tableName] = $qry->fetch();
+                    }
                 }
             }
         }
@@ -58,7 +59,7 @@ class ORM extends Database
 
     public function update($table, $id, $fields)
     {
-        $db = $this->dbConnect(); 
+        $db = $this->dbConnect();
         $sql = "UPDATE $table SET ";
         $i = 0;
         foreach ($fields as $key => $value) {
@@ -69,14 +70,14 @@ class ORM extends Database
             }
         }
 
-        $sql .= " WHERE id_" . $table . " = ". $id;
+        $sql .= " WHERE id_" . $table . " = " . $id;
         $qry = $db->query($sql);
         return $qry === false ? $qry : true;
     }
 
     public function delete($table, $id)
     {
-        $db = $this->dbConnect(); 
+        $db = $this->dbConnect();
         $sql = "DELETE FROM $table WHERE id_" . $table . " = " . $id;
         $qry = $db->query($sql);
         return $qry === false ? $qry : true;
@@ -88,15 +89,15 @@ class ORM extends Database
         "LIMIT" => ""
     ))
     {
-        $db = $this->dbConnect(); 
+        $db = $this->dbConnect();
         $sql = "SELECT * FROM $table ";
         foreach ($params as $key => $value) {
-                $sql .= $key . " '" . $value . "' ";
+            $sql .= $key . " '" . $value . "' ";
         }
 
         $qry = $db->query($sql);
         $res = $qry->fetch();
 
-        return $res; 
+        return $res;
     }
 }
