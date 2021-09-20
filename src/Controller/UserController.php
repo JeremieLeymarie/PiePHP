@@ -34,6 +34,8 @@ class UserController extends Core\Controller
         ]);
 
         if ($res) {
+            session_start();
+            $_SESSION["user"] = $res;
             header('Location: http://localhost/pie/profile/' . $res["id_fiche_personne"]);
         } else {
             $this->render("login", ["success" => false]);
@@ -42,24 +44,28 @@ class UserController extends Core\Controller
 
     public function profileAction($id)
     {
+        session_start(); 
         $user = new UserModel(["id" => $id]);
         $idMembre = $user->find("membre", array(
             "WHERE id_fiche_perso =" => $id,
-        ))["id_membre"];
+        ));
         $res = $user->read($user->tableName, $id);
-        $idFilms = $user->find("historique_membre", [
-            "WHERE id_membre =" => $idMembre
-        ]);
- 
-        $orm = new Core\ORM();
-        $res["history"] = []; 
-        foreach ($idFilms as $value) {
-            array_push($res["history"], $orm->read("film", $value["id_film"], ["has one" => "genre"]));
+
+        if($idMembre){
+            $idMembre = $idMembre["id_membre"];
+            $idFilms = $user->find("historique_membre", [
+                "WHERE id_membre =" => $idMembre
+            ]);
+            $orm = new Core\ORM();
+            $res["history"] = [];
+            foreach ($idFilms as $value) {
+                array_push($res["history"], $orm->read("film", $value["id_film"], ["has one" => "genre"]));
+            }
         }
         // echo "<pre>"; 
         // var_dump($res); 
         // echo "</pre>"; 
-        $this->render("profile", ["data" => $res, "idMembre"=>$idMembre]);
+        $this->render("profile", ["data" => $res, "idMembre" => $idMembre]);
     }
 
     public function deleteAction($id)

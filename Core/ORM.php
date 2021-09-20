@@ -121,7 +121,6 @@ class ORM extends Database
         foreach ($params as $key => $value) {
             $sql .= $key . " '" . $value . "' ";
         }
-        var_dump($sql); 
         $qry = $db->query($sql);
         if($qry->rowCount()>1){
             $res = $qry->fetchAll();
