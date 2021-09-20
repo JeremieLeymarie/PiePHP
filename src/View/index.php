@@ -19,11 +19,12 @@ if (isset($_SESSION["user"]["id_fiche_personne"])) {
 
 <body>
     <header>
+        <h1>My Cinema</h1>
         <nav>
             <ul>
-                <li><a href="http://localhost/pie/">Home</a></li>
-                <li><a href=<?=$link?>>Profile</a></li>
-                <li><a href="http://localhost/pie/genre">Genres</a></li>
+                <li class="btn"><a href="http://localhost/pie/">Home</a></li>
+                <li class="btn"><a href=<?=$link?>>Profile</a></li>
+                <li class="btn"><a href="http://localhost/pie/genre">Genres</a></li>
             </ul>
         </nav>
     </header>
