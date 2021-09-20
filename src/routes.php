@@ -19,4 +19,6 @@ Core\Router::connect("/addGenre", ["controller" => "genre", "action" => "addGenr
 Core\Router::connect("/deleteGenre/{id}", ["controller" => "genre", "action" => "deleteGenre"]); 
 Core\Router::connect("/modifyGenre/{id}", ["controller" => "genre", "action" => "modifyGenre"]); 
 Core\Router::connect("/genre/{id?}", ["controller" => "genre", "action" => "genre"]); 
+Core\Router::connect("/addHistory/{id?}", ["controller" => "history", "action" => "addHistory"]); 
+Core\Router::connect("/deleteHistory/{id?}", ["controller" => "history", "action" => "deleteHistory"]); 
 

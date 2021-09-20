@@ -43,7 +43,23 @@ class UserController extends Core\Controller
     public function profileAction($id)
     {
         $user = new UserModel(["id" => $id]);
-        $this->render("profile", ["data" => $user]);
+        $idMembre = $user->find("membre", array(
+            "WHERE id_fiche_perso =" => $id,
+        ))["id_membre"];
+        $res = $user->read($user->tableName, $id);
+        $idFilms = $user->find("historique_membre", [
+            "WHERE id_membre =" => $idMembre
+        ]);
+ 
+        $orm = new Core\ORM();
+        $res["history"] = []; 
+        foreach ($idFilms as $value) {
+            array_push($res["history"], $orm->read("film", $value["id_film"], ["has one" => "genre"]));
+        }
+        // echo "<pre>"; 
+        // var_dump($res); 
+        // echo "</pre>"; 
+        $this->render("profile", ["data" => $res, "idMembre"=>$idMembre]);
     }
 
     public function deleteAction($id)
@@ -64,7 +80,7 @@ class UserController extends Core\Controller
         $res = $user->update($user->tableName, $id, $params);
         if ($res) {
             self::$_render = "Informations mises à jour";
-            header("Location: http://localhost/pie/profile/" . $user->id); 
+            header("Location: http://localhost/pie/profile/" . $user->id);
         } else {
             self::$_render = "Echec de la modification";
         }
@@ -75,6 +91,4 @@ class UserController extends Core\Controller
         $user = new UserModel(["id" => $id]);
         $this->render("modify", ["data" => $user]);
     }
-
-   
 }

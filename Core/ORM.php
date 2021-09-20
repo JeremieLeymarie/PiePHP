@@ -35,6 +35,7 @@ class ORM extends Database
     {
         $db = $this->dbConnect();
         $sql = "SELECT * FROM $table WHERE id_" . $table . " =  " . $id;
+
         $qry = $db->query($sql);
         $res = $qry->fetch();
 
@@ -68,7 +69,6 @@ class ORM extends Database
                     if ($type == "has many") {
                         $sql = "SELECT * FROM $tableName WHERE id_" . $table . " = " . $data['id_' . $table];
                         $subQry = $db->query($sql);
-                        var_dump($sql); 
                         $data[$tableName] = $subQry->fetchAll();
                     } else if ($type == "has one") {
                         if (isset($res["id_" . $tableName]) && $data["id_" . $tableName] != NULL) {
@@ -121,9 +121,14 @@ class ORM extends Database
         foreach ($params as $key => $value) {
             $sql .= $key . " '" . $value . "' ";
         }
-
+        var_dump($sql); 
         $qry = $db->query($sql);
-        $res = $qry->fetch();
+        if($qry->rowCount()>1){
+            $res = $qry->fetchAll();
+        }
+        else{
+            $res = $qry->fetch(); 
+        }
 
         return $res;
     }
