@@ -53,7 +53,34 @@ class ORM extends Database
                 }
             }
         }
+        return $res;
+    }
 
+    public function readAll($table, $relations = NULL){
+        $db = $this->dbConnect();
+        $sql = "SELECT * FROM $table";
+        $qry = $db->query($sql);
+        $res = []; 
+
+        while($data = $qry->fetch()){
+            if ($relations != NULL) {
+                foreach ($relations as $type => $tableName) {
+                    if ($type == "has many") {
+                        $sql = "SELECT * FROM $tableName WHERE id_" . $table . " = " . $data['id_' . $table];
+                        $subQry = $db->query($sql);
+                        var_dump($sql); 
+                        $data[$tableName] = $subQry->fetchAll();
+                    } else if ($type == "has one") {
+                        if (isset($res["id_" . $tableName]) && $data["id_" . $tableName] != NULL) {
+                            $sql = "SELECT * FROM $tableName WHERE id_" . $tableName . " = " . $data["id_" . $tableName];
+                            $subQry = $db->query($sql);
+                            $data[$tableName] = $subQry->fetch();
+                        }
+                    }
+                }
+            }
+            array_push($res, $data);
+        }
         return $res;
     }
 

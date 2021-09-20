@@ -5,20 +5,15 @@ class FilmController extends Core\Controller
 
     public function indexAction()
     {
-        $i = 0;
-        $films = [];
-        while (true) {
-            $film = new FilmModel(["id" => $i]);
-            $res = $film->read($film->tableName, $i, $film->getRelations());
-            if ($res) {
-                array_push($films, $res);
-            } else {
-                break;
-            }
-            $i++;
+        $orm = new Core\ORM();
+        $films = $orm->readAll("film", ["has one" => "genre"]);
+        var_dump($films); 
+        if($films){
+            $this->render("index", ["films" => $films]);
         }
-
-        $this->render("index", ["films" => $films]);
+        else{
+            self::$_render = "Erreur de chargement des films"; 
+        }
     }
 
     public function filmAction($id)
@@ -52,18 +47,18 @@ class FilmController extends Core\Controller
     public function modifyFilmAction($id)
     {
         $params = $this->request->getQueryParams();
-        $film = new FilmModel(["id" =>$id]);
+        $film = new FilmModel(["id" => $id]);
         $res = $film->update($film->tableName, $id, $params);
-        if($res){
+        if ($res) {
             self::$_render = "Film modifié";
         }
     }
     public function deleteFilmAction($id)
     {
-        $film = new FilmModel(["id" =>$id]);
+        $film = new FilmModel(["id" => $id]);
         $res = $film->delete($film->tableName, $id);
-        if($res){
-            self::$_render = "Film supprimé"; 
+        if ($res) {
+            self::$_render = "Film supprimé";
         }
     }
     public function adminAction()

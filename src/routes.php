@@ -15,3 +15,8 @@ Core\Router::connect("/searchFilm", ["controller" => "film", "action" => "search
 Core\Router::connect("/addFilm", ["controller" => "film", "action" => "addFilm"]); 
 Core\Router::connect("/modifyFilm/{id}", ["controller" => "film", "action" => "modifyFilm"]); 
 Core\Router::connect("/deleteFilm/{id}", ["controller" => "film", "action" => "deleteFilm"]); 
+Core\Router::connect("/addGenre", ["controller" => "genre", "action" => "addGenre"]); 
+Core\Router::connect("/deleteGenre/{id}", ["controller" => "genre", "action" => "deleteGenre"]); 
+Core\Router::connect("/modifyGenre/{id}", ["controller" => "genre", "action" => "modifyGenre"]); 
+Core\Router::connect("/genre/{id?}", ["controller" => "genre", "action" => "genre"]); 
+

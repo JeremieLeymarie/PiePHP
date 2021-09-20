@@ -4,19 +4,13 @@ class AppController extends Core\Controller
 {
     public function indexAction()
     {
-        $films = [];
-        $i = 1;
-        while (true) {
-            $film = new FilmModel(["id" => $i]);
-            $res = $film->read($film->tableName, $i, $film->getRelations());
-            if ($res) {
-                array_push($films, $res);
-            } else {
-                break;
-            }
-            $i++;
+        $orm = new Core\ORM();
+        $films = $orm->readAll("film", ["has one" => "genre"]);
+        if($films){
+            $this->render("index", ["films" => $films]);
         }
-
-        $this->render("index", ["films" => $films]);
+        else{
+            self::$_render = "Erreur de chargement des films"; 
+        }
     }
 }
