@@ -5,8 +5,12 @@
     <section class="profile-1">
         <h4>General information</h4>
         <ul>
-            <li>Address : {{ $data["adresse"] }}</li>
+            <li>Addresse : {{ $data["adresse"] }}</li>
             <li>Email : {{ $data["email"] }}</li>
+            @isset($data["ville"])
+            <li> Ville : {{$data["ville"]}}</li>
+            @endisset
+            <li>Date de naissance : {{substr($data["date_naissance"], 0, 10)}}</li>
         </ul>
     </section>
     @isset($_SESSION["user"])

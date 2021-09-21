@@ -5,8 +5,12 @@
     <section class="profile-1">
         <h4>General information</h4>
         <ul>
-            <li>Address : <?= htmlentities( $data["adresse"] )?></li>
+            <li>Addresse : <?= htmlentities( $data["adresse"] )?></li>
             <li>Email : <?= htmlentities( $data["email"] )?></li>
+            <?php if(isset($data["ville"])):?>
+            <li> Ville : <?= htmlentities($data["ville"])?></li>
+            <?php endif;?>
+            <li>Date de naissance : <?= htmlentities(substr($data["date_naissance"], 0, 10))?></li>
         </ul>
     </section>
     <?php if(isset($_SESSION["user"])):?>
