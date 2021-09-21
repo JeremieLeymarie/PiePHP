@@ -4,7 +4,7 @@
     <div class="film-info">
         <?php if(isset($film["genre"]["nom"])):?>
         <p><strong>
-                <?= htmlentities(ucfirst($film["genre"]["nom"]))?>
+                <a href="http://localhost/pie/genre/<?= htmlentities($film['genre']['id_genre'])?>"><?= htmlentities(ucfirst($film["genre"]["nom"]))?></a>
             </strong></p>
         <?php endif;?>
         <?php if(isset($film["annee_prod"])):?>
@@ -19,5 +19,5 @@
         <?php endif;?>
     </div>
     <h4>Résumé</h4>
-    <p><?= htmlentities($film["resum"])?></p>
+    <p class="resume"><?= htmlentities($film["resum"])?>...</p>
 </section>

@@ -11,3 +11,4 @@
     <input type="password" name="password" id="password">
     <input type="submit" value="Log in">
 </form>
+<p>Pas encore de compte ?</p><a class="btn" href="http://localhost/pie/register">Inscrivez vous !</a>

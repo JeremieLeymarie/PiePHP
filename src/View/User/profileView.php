@@ -9,21 +9,21 @@
             <li>Email : <?= htmlentities( $data["email"] )?></li>
         </ul>
     </section>
-    <a href="http://localhost/pie/modifyPage/<?= htmlentities($data['id_fiche_personne'])?>">Modifiez vos informations</a>
+    <a class="btn" href="http://localhost/pie/modifyPage/<?= htmlentities($data['id_fiche_personne'])?>">Modifiez vos informations</a>
     <section class="history">
         <h4>Votre historique</h4>
+        <form action="http://localhost/pie/addHistory/<?= htmlentities($data['id_fiche_personne'])?>" method="POST">
+            <label for="titre">Ajouter un film à votre historique</label>
+            <input type="text" id="titre" name="titre">
+            <input type="hidden" name="id_membre" value=<?= htmlentities($idMembre)?>>
+            <input type="submit" value="Ajouter">
+        </form>
         <?php if(isset($data["history"])):?>
-            <form action="http://localhost/pie/addHistory/<?= htmlentities($data['id_fiche_personne'])?>" method="POST">
-                <label for="titre">Ajouter un film à votre historique</label>
-                <input type="text" id="titre" name="titre">
-                <input type="hidden" name="id_membre" value=<?= htmlentities($idMembre)?>>
-                <input type="submit" value="Ajouter">
-            </form>
-            <ul>
-                <?php foreach($data["history"] as $key=>$value):?>
-                <li><a href="http://localhost/pie/film/<?= htmlentities($value['id_film'])?>"><?= htmlentities($value["titre"])?></a><a href="http://localhost/pie/deleteHistory/<?= htmlentities($value['id_film'])?>.<?= htmlentities($idMembre)?>.{$data['id_fiche_personne']}"><img src="http://localhost/pie/webroot/assets/cross.png" class="delete" alt="delete"></a></li>
-                <?php endforeach;?>
-            </ul>
+        <ul>
+            <?php foreach($data["history"] as $key=>$value):?>
+            <li class="history-item"><a href="http://localhost/pie/film/<?= htmlentities($value['id_film'])?>"><?= htmlentities($value["titre"])?></a><a href="http://localhost/pie/deleteHistory/<?= htmlentities($value['id_film'])?>.<?= htmlentities($idMembre)?>.{$data['id_fiche_personne']}"><img src="http://localhost/pie/webroot/assets/white_cross2.png" class="delete" alt="delete"></a></li>
+            <?php endforeach;?>
+        </ul>
         <?php endif;?>
     </section>
 </div>
