@@ -88,7 +88,7 @@ a {
 }
 
 .film-card:hover {
-    box-shadow: 0 10px 20px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 20px 30px 20px rgba(0, 0, 0, .2);
 }
 
 .resume {
@@ -104,5 +104,14 @@ a {
 
 .history-item > *{
     margin : .5rem; 
+}
 
+.search-form{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#search{
+    width: 180px;
 }

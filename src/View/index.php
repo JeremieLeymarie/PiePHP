@@ -21,6 +21,10 @@ if (isset($_SESSION["user"]["id_fiche_personne"])) {
     <header>
         <h1><a href="http://localhost/pie/">My Cinema</a>
         </h1>
+        <form class="search-form" action="http://localhost/pie/" method="POST">
+            <input type="text" name="search" id="search">
+            <input type="submit" value="Chercher">
+        </form>
         <nav>
             <ul>
                 <li class="btn"><a href="http://localhost/pie/">Home</a></li>
