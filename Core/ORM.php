@@ -106,6 +106,7 @@ class ORM extends Database
     {
         $db = $this->dbConnect();
         $sql = "DELETE FROM $table WHERE id_" . $table . " = " . $id;
+        var_dump($sql); 
         $qry = $db->query($sql);
         return $qry === false ? $qry : true;
     }

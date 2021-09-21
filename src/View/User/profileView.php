@@ -30,7 +30,7 @@
         <?php if(isset($data["history"])):?>
         <ul>
             <?php foreach($data["history"] as $key=>$value):?>
-            <li class="history-item"><a href="http://localhost/pie/film/<?= htmlentities($value['id_film'])?>"><?= htmlentities($value["titre"])?></a><a href="http://localhost/pie/deleteHistory/<?= htmlentities($value['id_film'])?>.<?= htmlentities($idMembre)?>.{$data['id_fiche_personne']}"><img src="http://localhost/pie/webroot/assets/white_cross2.png" class="delete" alt="delete"></a></li>
+            <li class="history-item"><a href="http://localhost/pie/film/<?= htmlentities($value['id_film'])?>"><?= htmlentities($value["titre"])?></a><a href="http://localhost/pie/deleteHistory/<?= htmlentities($value['id_film'])?>.<?= htmlentities($idMembre)?>.<?= htmlentities($data['id_fiche_personne'])?>"><img src="http://localhost/pie/webroot/assets/white_cross2.png" class="delete" alt="delete"></a></li>
             <?php endforeach;?>
         </ul>
         <?php endif;?>

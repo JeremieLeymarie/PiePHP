@@ -30,7 +30,7 @@
         @isset($data["history"])
         <ul>
             @foreach($data["history"] as $key=>$value)
-            <li class="history-item"><a href="http://localhost/pie/film/{{$value['id_film']}}">{{$value["titre"]}}</a><a href="http://localhost/pie/deleteHistory/{{$value['id_film']}}.{{$idMembre}}.{$data['id_fiche_personne']}"><img src="http://localhost/pie/webroot/assets/white_cross2.png" class="delete" alt="delete"></a></li>
+            <li class="history-item"><a href="http://localhost/pie/film/{{$value['id_film']}}">{{$value["titre"]}}</a><a href="http://localhost/pie/deleteHistory/{{$value['id_film']}}.{{$idMembre}}.{{$data['id_fiche_personne']}}"><img src="http://localhost/pie/webroot/assets/white_cross2.png" class="delete" alt="delete"></a></li>
             @endforeach
         </ul>
         @endisset

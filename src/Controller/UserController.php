@@ -44,22 +44,31 @@ class UserController extends Core\Controller
 
     public function profileAction($id)
     {
-        session_start(); 
+        session_start();
         $user = new UserModel(["id" => $id]);
         $idMembre = $user->find("membre", array(
             "WHERE id_fiche_perso =" => $id,
         ));
         $res = $user->read($user->tableName, $id);
 
-        if($idMembre){
+        if ($idMembre) {
             $idMembre = $idMembre["id_membre"];
             $idFilms = $user->find("historique_membre", [
                 "WHERE id_membre =" => $idMembre
             ]);
             $orm = new Core\ORM();
-            $res["history"] = [];
-            foreach ($idFilms as $value) {
-                array_push($res["history"], $orm->read("film", $value["id_film"], ["has one" => "genre"]));
+            if ($idFilms) {
+                $res["history"] = [];
+
+                if(!key_exists("id_film", $idFilms)){
+                    foreach ($idFilms as $value) {
+                        array_push($res["history"], $orm->read("film", $value["id_film"], ["has one" => "genre"]));
+                    }
+                }
+                else{
+                    array_push($res["history"], $orm->read("film", $idFilms["id_film"], ["has one" => "genre"]));
+                }
+               
             }
         }
         // echo "<pre>"; 

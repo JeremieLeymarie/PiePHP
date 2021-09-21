@@ -24,7 +24,7 @@ class HistoryController extends Core\Controller
     public function deleteHistoryAction($id){
         $params = explode(".", $id); 
         $orm = new Core\ORM(); 
-        $idHistory = $orm->find("historique_membre", ["WHERE id_membre =" => $params[1], "AND id_film =" => $params[0]])["id_historique_membre"]; 
+        $idHistory = $orm->find("historique_membre", ["WHERE id_membre =" => $params[1], "AND id_film =" => $params[0]])["id_historique_membre"];
         $orm->delete("historique_membre", $idHistory); 
         header("Location: http://localhost/pie/profile/" . $params[2]);
     }
