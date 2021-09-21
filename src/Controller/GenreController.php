@@ -25,7 +25,7 @@ class GenreController extends Core\Controller
         $params = $this->request->getQueryParams();
         $genre = new GenreModel($params);
         if ($genre->id) {
-            header('Location: http://localhost/pie/showGenre/' . $genre->id);
+            header('Location: http://localhost/pie/genre/' . $genre->id);
             // self::$_render = "Nouveau genre ajouté";
         }
     }
@@ -36,7 +36,7 @@ class GenreController extends Core\Controller
         $genre = new GenreModel(["id" => $id]);
         $res = $genre->update($genre->tableName, $id, $params);
         if ($res) {
-            header('Location: http://localhost/pie/showGenre/' . $genre->id);
+            header('Location: http://localhost/pie/genre/' . $genre->id);
 
         }
     }
@@ -46,7 +46,7 @@ class GenreController extends Core\Controller
         $genre = new GenreModel(["id" => $id]);
         $res = $genre->delete($genre->tableName, $id);
         if ($res) {
-            header('Location: http://localhost/pie/showGenre/' . $genre->id);
+            header('Location: http://localhost/pie/genre' . $genre->id);
         }
     }
 }
