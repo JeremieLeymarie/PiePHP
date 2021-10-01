@@ -1,8 +1,8 @@
 <p>HOME PAGE</p>
-
+<!-- <?= htmlentities(var_dump($films))?> -->
 <section>
     <?php if(isset($films["films"]) || isset($films["users"])):?>
-    <?php if(isset($films["films"])):?>
+    <?php if($films["films"] !== false):?>
     <h3>Films</h3>
     <?php if(isset($films["films"]["titre"])):?>
     <a href="http://localhost/pie/film/<?= htmlentities($films['films']['id_film'])?>">
@@ -37,7 +37,7 @@
     </div>
     <?php endif;?>
     <?php endif;?>
-    <?php if(isset($films["users"])):?>
+    <?php if($films["users"]!== false):?>
     <h3>Utilisateurs</h3>
     <?php if(isset($films["users"]["nom"])):?>
     <a href="http://localhost/pie/profile/<?= htmlentities($films['users']['id_fiche_personne'])?>">

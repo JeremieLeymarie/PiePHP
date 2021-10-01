@@ -1,8 +1,8 @@
 <p>HOME PAGE</p>
-
+<!-- {{var_dump($films)}} -->
 <section>
     @if(isset($films["films"]) || isset($films["users"]))
-    @isset($films["films"])
+    @if($films["films"] !== false)
     <h3>Films</h3>
     @if(isset($films["films"]["titre"]))
     <a href="http://localhost/pie/film/{{$films['films']['id_film']}}">
@@ -36,8 +36,8 @@
         @endforeach
     </div>
     @endif
-    @endisset
-    @isset($films["users"])
+    @endif
+    @if($films["users"]!== false)
     <h3>Utilisateurs</h3>
     @if(isset($films["users"]["nom"]))
     <a href="http://localhost/pie/profile/{{$films['users']['id_fiche_personne']}}">
@@ -56,7 +56,7 @@
         @endforeach
     </div>
     @endif
-    @endisset
+    @endif
     @else
     <div class="films-container">
         @foreach($films as $key => $value)
