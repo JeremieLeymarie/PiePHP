@@ -1,5 +1,5 @@
 # Introduction 
-    I achieved this project, juste before using a web framework for the first time. The goal was to create a mini PHP framework, using the same basic principles Symfony, Laravel or CakePHP use. It follows the **MVC** pattern. 
+I achieved this project, juste before using a web framework for the first time. The goal was to create a mini PHP framework, using the same basic principles Symfony, Laravel or CakePHP use. It follows the **MVC** pattern. 
 
 ## How to use 
 To use it, you can either put the Core part of the code and I put it in your project. Or if you just to see what can be done with it you can run a small app I built to test it. It's a cinema interface. 
