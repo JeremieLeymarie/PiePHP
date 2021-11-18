@@ -20,7 +20,6 @@ class Core
         $url = substr($_SERVER["REQUEST_URI"], 4);
 
         if (preg_match("/(?<=pie)(\/.*)(?=\/.)/", $_SERVER["REQUEST_URI"], $matches)) {
-            // var_dump("in"); 
             $url = $matches[0];
         }
 
